@@ -17,7 +17,12 @@ import { RiDashboardFill } from "react-icons/ri";
 import { BsBookshelf } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 import { useRouter } from "next/router";
-import { globalConstants } from "../../constants/GlobalConstants";
+import {
+  globalConstants,
+  sideMenuItems,
+} from "../../constants/GlobalConstants";
+import { SideNavItem } from "../../types/SideNav";
+import { Role } from "../../constants/Role";
 // import { useGetTokenExpiryAPI } from "@/cineplay/api-integration/Users/getTokenExpiry";
 
 type BaseLayoutHook = {
@@ -27,6 +32,7 @@ type BaseLayoutHook = {
   isLoading: boolean;
   isFetched: boolean;
   authenticated: boolean;
+  menuItems: SideNavItem[];
   inUnauthorizedPage: boolean;
   isAlertSnackbarOpen: AlertSnackbarHook["isAlertSnackbarOpen"];
   alertSnackbarMessage: AlertSnackbarHook["alertSnackbarMessage"];
@@ -43,6 +49,7 @@ export const useBaseLayout = ({
   const router = useRouter();
   const [inUnauthorizedPage, setInUnauthorizedPage] = useState<boolean>(false);
   const { setUser, setAuthenticated, authenticated, user } = useUserContext();
+  const [menuItems, setMenuItems] = useState<SideNavItem[]>([]);
 
   const {
     snackBarError,
@@ -87,6 +94,8 @@ export const useBaseLayout = ({
 
       // setAuthenticated(true);
       if (!!getAccessToken()) {
+        setAuthenticated(true);
+      } else {
         setAuthenticated(true);
       }
       // else show pop up to login
@@ -141,6 +150,82 @@ export const useBaseLayout = ({
     }
   }, [snackBarError?.ErrorMessage]);
 
+  //  update based on use role
+  // side nav bar contents
+  useEffect(() => {
+    if (user && isSuccess) {
+      let tempMenuItems: SideNavItem[];
+      if (user.role === Role.Player) {
+        tempMenuItems = [
+          {
+            name: sideMenuItems.Movie.name,
+            icon: './camera.svg',
+            link: sideMenuItems.Movie.link,
+          },
+          {
+            name: sideMenuItems.Dialogue.name,
+            icon: './wave.svg',
+            link: sideMenuItems.Dialogue.link,
+          },
+          {
+            name: sideMenuItems.Music.name,
+            icon: './music.svg',
+            link: sideMenuItems.Music.link,
+          },
+          // {
+          //   name: sideMenuItems.Profile.name,
+          //   icon: IoHeartSharp,
+          //   link: sideMenuItems.Profile.link,
+          // },
+        ];
+      } else {
+        tempMenuItems = [
+          // {
+          //   name: sideMenuItems.Dashboard.name,
+          //   icon: RiDashboardFill,
+          //   link: sideMenuItems.Dashboard.link,
+          // },
+          {
+            name: sideMenuItems.Movie.name,
+            icon: './camera.svg',
+            link: sideMenuItems.Movie.link,
+          },
+          {
+            name: sideMenuItems.Dialogue.name,
+            icon: './wave.svg',
+            link: sideMenuItems.Dialogue.link,
+          },
+          {
+            name: sideMenuItems.Music.name,
+            icon: './music.svg',
+            link: sideMenuItems.Music.link,
+          },
+          // {
+          //   name: sideMenuItems.Profile.name,
+          //   icon: IoHeartSharp,
+          //   link: sideMenuItems.Profile.link,
+          // },
+        ];
+      }
+      setMenuItems(tempMenuItems);
+      // if no menu is selected select /movie
+      if (
+        !currentSideMenu ||
+        currentSideMenu === "" ||
+        currentSideMenu.length === 0
+      )
+        setCurrentSideMenu(sideMenuItems.Movie.link);
+    }
+  }, [user]);
+
+  // update current menu on path change
+  useEffect(() => {
+    if (router?.pathname) {
+      const tempCurrentMenu = router?.pathname?.split("/")[1];
+      if (tempCurrentMenu) setCurrentSideMenu(`/${tempCurrentMenu}`);
+    }
+  }, [router?.pathname]);
+
   return {
     user,
     isSuccess,
@@ -148,6 +233,7 @@ export const useBaseLayout = ({
     isError,
     isLoading,
     authenticated,
+    menuItems,
     alertSnackbarMessage,
     inUnauthorizedPage,
     isAlertSnackbarOpen,

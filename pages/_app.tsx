@@ -1,4 +1,4 @@
-import "@/styles/globals.css";
+import "@/cineplay/styles/globals.css";
 import type { AppProps } from "next/app";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import { ThemeProvider } from "@mui/styles";
