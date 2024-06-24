@@ -63,7 +63,10 @@ export const BaseLayout: FC<BaseLayoutProps> = ({
         ) : (
           (!authenticated || !isSuccess) && <LoginDialog />
         )}
-        <NavBar menuItems={menuItems}>{children}</NavBar>
+        {/* navbar  */}
+        <NavBar menuItems={menuItems}></NavBar>
+        {/* page main content */}
+        <Box sx={{ zIndex: 1 }}>{children}</Box>
         <AlertSnackbar open={isAlertSnackbarOpen}>
           <Alert
             onClose={handleCloseAlertSnackbar}
@@ -77,8 +80,11 @@ export const BaseLayout: FC<BaseLayoutProps> = ({
   }
 
   return (
-    <Box>
-      <NavBar menuItems={menuItems}>{children}</NavBar>
+    <Box className={classes.baseLayoutRoot}>
+      {/* navbar  */}
+      <NavBar menuItems={menuItems}></NavBar>
+      {/* page main content */}
+      <Box sx={{ zIndex: 1 }}>{children}</Box>
       {/* snack bar */}
       <AlertSnackbar open={isAlertSnackbarOpen}>
         <Alert

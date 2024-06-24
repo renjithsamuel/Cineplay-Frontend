@@ -3,11 +3,13 @@ import { themeValues } from "../../constants/ThemeConstants";
 
 export const useNavBarStyles = makeStyles((theme) => ({
   navBarRoot: {
-    width: "10vw",
+    paddingTop: "6vh",
+    paddingBottom: "10vh",
+    width: "8vw",
     height: "100vh",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    alignItems : "center",
     "& >*": {
       userSelect: "none",
     },
@@ -28,6 +30,7 @@ export const useNavBarStyles = makeStyles((theme) => ({
     marginTop: themeValues.spacing(15),
     gap: themeValues.spacing(2),
     display: "flex",
+    justifySelf: 'center',
     flexDirection: "column",
   },
   sideMenuItem: {

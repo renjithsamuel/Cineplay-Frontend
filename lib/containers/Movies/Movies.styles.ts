@@ -3,6 +3,8 @@ import { makeStyles } from "@mui/styles";
 
 export const useMoviesStyles = makeStyles((theme) => ({
   moviesRoot: {
-    backgroundColor: "black",
+    // backgroundColor: "black",
+    display: "flex",
+    marginLeft: theme.spacing(5),
   },
 }));
