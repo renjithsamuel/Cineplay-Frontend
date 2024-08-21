@@ -5,6 +5,7 @@ import { FiAlertCircle } from "react-icons/fi";
 import { FaPlay } from "react-icons/fa";
 import { useMovies } from "./Movies.hooks";
 import { MovieCenterSection } from "../../components/MovieCenterSection/MovieCenterSection";
+import { MovieRightSection } from "../../components/MovieRightSection/MovieRightSection";
 
 interface MoviesProps {}
 
@@ -15,9 +16,10 @@ export const Movies: FC<MoviesProps> = ({}) => {
 
   return (
     <Box className={classes.moviesRoot}>
-      {/*  center thing */}
+      {/*  center section */}
       <MovieCenterSection AllImages={AllImages} />
-      {/* right thing */}
+      {/* right section */}
+      <MovieRightSection />
     </Box>
   );
 };

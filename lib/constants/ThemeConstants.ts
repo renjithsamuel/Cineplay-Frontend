@@ -21,6 +21,7 @@ const lightThemeValues = {
     white: "#ffffff",
     black: "#000000",
     lightGray: "#f1f1f1",
+    textGray: "#FFFFFF",
     rubyRed: "#8B0000",
     rubyRedDark: "#BA0021",
     transparent: "transparent",
