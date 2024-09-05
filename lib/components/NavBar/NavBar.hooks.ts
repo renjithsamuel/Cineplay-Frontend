@@ -18,7 +18,7 @@ export const useNavBar = (): navBarHook => {
   const { setSearchText, currentSideMenu, DialogBox } = usePageContext();
   const { user } = useUserContext();
 
-  console.log("x", currentSideMenu)
+  console.log("x", currentSideMenu);
 
   const handleSearch = debounce((value: string) => {
     if (value && value != "" && value.length > 0) {
@@ -27,7 +27,7 @@ export const useNavBar = (): navBarHook => {
   }, globalConstants.debounceDelay);
 
   const handleSideMenuClick = (menulink: string) => {
-    console.log("x", menulink)
+    console.log("x", menulink);
     if (menulink && menulink != "" && menulink.length > 0) {
       router.replace(menulink);
     }

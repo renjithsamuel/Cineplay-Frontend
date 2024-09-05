@@ -5,5 +5,6 @@ export const useBaseLayoutStyles = makeStyles((theme) => ({
   baseLayoutRoot: {
     backgroundColor: "black",
     display: "flex",
+    // margin: themeValues.spacing(2),
   },
 }));

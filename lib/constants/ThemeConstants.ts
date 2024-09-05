@@ -3,6 +3,7 @@ import { LocalStorage } from "@/cineplay/lib/utils/localstorage";
 const lightThemeValues = {
   border: {
     borderRadius: "6px",
+    borderRadiusVeryHigh: "15px",
     borderRadiusHigh: "10px",
     borderRadiusLow: "4px",
     defaultborder: "1px solid black",
@@ -25,6 +26,7 @@ const lightThemeValues = {
     rubyRed: "#8B0000",
     rubyRedDark: "#BA0021",
     transparent: "transparent",
+    hover: "#a3a3a3",
   },
   font: {
     fontWeightThick: "700",
@@ -62,6 +64,9 @@ const lightThemeValues = {
   gradient: {
     color1:
       "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%)",
+    // cineplayBoxes: "linear-gradient(to top, grey 100%, black 100%)",
+    cineplayBoxes:
+      "linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(45,45,45,1) 0%, rgba(27,27,27,1) 100%)",
   },
   oneByThree: "33.33%",
   sideNavWidth: "14%",

@@ -1,15 +1,7 @@
-type MusicHook = {
+type MusicHook = {};
 
-};
-
-type MusicParams = {
-
-};
+type MusicParams = {};
 
 export const useMusic = ({}: MusicParams): MusicHook => {
- 
-
-  return {
-
-  };
+  return {};
 };

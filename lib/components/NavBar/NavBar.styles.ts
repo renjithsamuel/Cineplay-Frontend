@@ -3,20 +3,21 @@ import { themeValues } from "../../constants/ThemeConstants";
 
 export const useNavBarStyles = makeStyles((theme) => ({
   navBarRoot: {
+    paddingLeft: "2vw",
     paddingTop: "6vh",
     paddingBottom: "10vh",
     width: "8vw",
     height: "100vh",
     display: "flex",
     flexDirection: "column",
-    alignItems : "center",
+    alignItems: "center",
     "& >*": {
       userSelect: "none",
     },
   },
   logo: {
     padding: themeValues.spacing(2),
-    backgroundColor: "#2D2D2D",
+    background: themeValues.gradient.cineplayBoxes,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -24,13 +25,13 @@ export const useNavBarStyles = makeStyles((theme) => ({
   },
   logoImg: {
     objectFit: "cover",
-    borderRadius: themeValues.border.borderRadiusHigh,
+    borderRadius: themeValues.border.borderRadiusVeryHigh,
   },
   centerMenuWrap: {
     marginTop: themeValues.spacing(15),
     gap: themeValues.spacing(2),
     display: "flex",
-    justifySelf: 'center',
+    justifySelf: "center",
     flexDirection: "column",
   },
   sideMenuItem: {
@@ -38,11 +39,12 @@ export const useNavBarStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
 
-    borderRadius: themeValues.border.borderRadiusHigh,
+    borderRadius: themeValues.border.borderRadiusVeryHigh,
     padding: "1vh",
   },
   currentSideMenu: {
-    background: "linear-gradient(to bottom, #2D2D2D 100%, #1D1D1D 100%)",
+    background: themeValues.gradient.cineplayBoxes,
     boxShadow: themeValues.shadow.boxShadowHeavy,
+    padding: themeValues.spacing(2),
   },
 }));

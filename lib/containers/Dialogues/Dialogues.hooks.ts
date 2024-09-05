@@ -1,15 +1,7 @@
-type DialoguesHook = {
+type DialoguesHook = {};
 
-};
-
-type DialoguesParams = {
-
-};
+type DialoguesParams = {};
 
 export const useDialogues = ({}: DialoguesParams): DialoguesHook => {
- 
-
-  return {
-
-  };
+  return {};
 };

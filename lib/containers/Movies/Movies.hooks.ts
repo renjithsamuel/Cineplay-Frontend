@@ -1,10 +1,8 @@
 type MoviesHook = {
-  AllImages: string[]
+  AllImages: string[];
 };
 
-type MoviesParams = {
-
-};
+type MoviesParams = {};
 
 export const useMovies = ({}: MoviesParams): MoviesHook => {
   const AllImages = [

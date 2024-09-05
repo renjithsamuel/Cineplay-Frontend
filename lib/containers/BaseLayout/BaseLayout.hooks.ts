@@ -141,7 +141,7 @@ export const useBaseLayout = ({
     ) {
       openAlertSnackbar(
         snackBarError?.ErrorMessage,
-        snackBarError?.ErrorSeverity
+        snackBarError?.ErrorSeverity,
       );
       setSnackBarError(undefined);
       setTimeout(() => {
@@ -159,17 +159,17 @@ export const useBaseLayout = ({
         tempMenuItems = [
           {
             name: sideMenuItems.Movie.name,
-            icon: './camera.svg',
+            icon: "./camera.svg",
             link: sideMenuItems.Movie.link,
           },
           {
             name: sideMenuItems.Dialogue.name,
-            icon: './wave.svg',
+            icon: "./wave.svg",
             link: sideMenuItems.Dialogue.link,
           },
           {
             name: sideMenuItems.Music.name,
-            icon: './music.svg',
+            icon: "./music.svg",
             link: sideMenuItems.Music.link,
           },
           // {
@@ -187,17 +187,17 @@ export const useBaseLayout = ({
           // },
           {
             name: sideMenuItems.Movie.name,
-            icon: './camera.svg',
+            icon: "./camera.svg",
             link: sideMenuItems.Movie.link,
           },
           {
             name: sideMenuItems.Dialogue.name,
-            icon: './wave.svg',
+            icon: "./wave.svg",
             link: sideMenuItems.Dialogue.link,
           },
           {
             name: sideMenuItems.Music.name,
-            icon: './music.svg',
+            icon: "./music.svg",
             link: sideMenuItems.Music.link,
           },
           // {

@@ -1,78 +1,190 @@
 import React from "react";
-import { Box, IconButton, Typography, Divider } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Typography,
+  Divider,
+  Menu,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import { useCalendar } from "./CalenderBox.hooks";
-import { MdArrowBackIos } from "react-icons/md";
-import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { MdArrowBackIos, MdOutlineArrowForwardIos } from "react-icons/md";
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import { useCalendarStyles } from "./CalenderBox.styles";
+import { MonthYearDropdown } from "../MonthYearDropDown/MonthYearDropDown";
+import { themeValues } from "../../constants/ThemeConstants";
+import clsx from "clsx";
 
 export const Calendar = () => {
   const {
+    currentMonthInt,
     currentMonth,
     currentYear,
     daysInMonth,
     firstDayOfMonth,
-    handlePrevMonth,
-    handleNextMonth,
+    displayedDays,
+    handlePrev,
+    handleNext,
+    setMonthAndYear,
+    toggleView,
+    isMonthView,
+    selectedDate,
+    handleDateClick,
+    years,
+    currentWeek,
   } = useCalendar();
+
+  const classes = useCalendarStyles();
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
 
-  return (
-    <Box sx={{ padding: "16px", width: "300px" }}>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        {/* Month and Year Selector */}
-        <Typography variant="h6">{`${currentMonth} ${currentYear}`}</Typography>
+  const handleDropdownClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-        {/* Navigation Buttons */}
-        <Box>
-          <IconButton onClick={handlePrevMonth}>
-            <MdArrowBackIos />
-          </IconButton>
-          <IconButton onClick={handleNextMonth}>
-            <MdOutlineArrowForwardIos />
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleMonthChange = (newMonth: number) => {
+    setMonthAndYear(newMonth, currentYear);
+    handleClose();
+  };
+
+  const handleYearChange = (newYear: number) => {
+    setMonthAndYear(currentMonthInt, newYear);
+    handleClose();
+  };
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  return (
+    <Box className={classes.calendarContainer}>
+      <Box className={classes.header}>
+        <Box display="flex" alignItems="center">
+          <Box
+            sx={{ fontSize: "15px" }}
+          >{`${currentMonth} ${currentYear}`}</Box>
+          <IconButton onClick={handleDropdownClick}>
+            <IoMdArrowDropdown className={classes.icon} />
           </IconButton>
         </Box>
+
+        <Box className={classes.arrowsBox}>
+          <IconButton onClick={handlePrev} className={classes.arrowOutline}>
+            <MdArrowBackIos className={clsx(classes.icon, classes.scaleDown)} />
+          </IconButton>
+
+          <IconButton onClick={handleNext} className={classes.arrowOutline}>
+            <MdOutlineArrowForwardIos
+              className={clsx(classes.icon, classes.scaleDown)}
+            />
+          </IconButton>
+        </Box>
+
+        {/* <IconButton onClick={toggleView}>
+          {isMonthView ? (
+            <IoMdArrowDropup className={classes.icon} />
+          ) : (
+            <IoMdArrowDropdown className={classes.icon} />
+          )}
+        </IconButton> */}
       </Box>
 
-      <Divider sx={{ marginY: "8px" }} />
-
-      {/* Days of Week */}
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        {daysOfWeek.map((day) => (
-          <Typography key={day} variant="body2">
-            {day}
-          </Typography>
-        ))}
-      </Box>
-
-      {/* Dates Grid */}
-      <Box
+      <Divider
         sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(7, 1fr)",
-          gap: "4px",
-          marginTop: "8px",
+          marginY: themeValues.spacing(1),
+          bgcolor: themeValues.color.color4,
+          opacity: "50%",
         }}
-      >
-        {/* Empty slots for days before the first of the month */}
-        {Array.from({ length: firstDayOfMonth }).map((_, index) => (
-          <Box key={index} />
-        ))}
+      />
 
-        {/* Days in the current month */}
-        {daysInMonth.map((day, index) => (
+      <Box className={classes.daysOfWeek}>
+        {daysOfWeek.map((day, index) => (
           <Box
             key={index}
+            // variant="subtitle2"
             sx={{
-              padding: "8px",
-              textAlign: "center",
-              borderRadius: "4px",
-              backgroundColor: day.isToday ? "lightblue" : "transparent",
+              color:
+                index == daysOfWeek.length - 1 || index == 0
+                  ? "#FC8812"
+                  : "white",
             }}
           >
-            {day.date}
+            {day}
           </Box>
         ))}
       </Box>
+
+      <Box className={classes.datesGrid}>
+        {Array.from({
+          length: isMonthView || currentWeek == 0 ? firstDayOfMonth : 0,
+        }).map((_, index) => (
+          <Box key={index} />
+        ))}
+
+        {displayedDays.map((day, index) => (
+          <IconButton
+            key={index}
+            className={`${classes.dateBox} ${
+              selectedDate === day.date ? classes.selectedDate : ""
+            }`}
+            onClick={() => handleDateClick(day.date)}
+          >
+            {day.date}
+          </IconButton>
+        ))}
+      </Box>
+
+      {/* Dropdown for Month and Year Selection */}
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        sx={{
+          "& .MuiList-root": {
+            background: themeValues.gradient.cineplayBoxes, // Your desired background color
+          },
+        }}
+      >
+        <MonthYearDropdown
+          currentMonthInt={currentMonthInt}
+          currentYear={currentYear}
+          months={months}
+          years={years}
+          onMonthChange={(newMonth) => {
+            setMonthAndYear(newMonth, currentYear);
+            // handleClose();
+          }}
+          onYearChange={(newYear) => {
+            setMonthAndYear(currentMonthInt, newYear);
+            // handleClose();
+          }}
+        />
+      </Menu>
     </Box>
   );
 };

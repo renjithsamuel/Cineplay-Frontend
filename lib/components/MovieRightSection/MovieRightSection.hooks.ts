@@ -1,15 +1,8 @@
-type MovieRightSectionHook = {
+type MovieRightSectionHook = {};
 
-};
+type MovieRightSectionParams = {};
 
-type MovieRightSectionParams = {
-
-};
-
-export const useMovieRightSection = ({}: MovieRightSectionParams): MovieRightSectionHook => {
- 
-
-  return {
-
+export const useMovieRightSection =
+  ({}: MovieRightSectionParams): MovieRightSectionHook => {
+    return {};
   };
-};

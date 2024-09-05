@@ -1,15 +1,8 @@
-type MovieCenterSectionHook = {
+type MovieCenterSectionHook = {};
 
-};
+type MovieCenterSectionParams = {};
 
-type MovieCenterSectionParams = {
-
-};
-
-export const useMovieCenterSection = ({}: MovieCenterSectionParams): MovieCenterSectionHook => {
- 
-
-  return {
-
+export const useMovieCenterSection =
+  ({}: MovieCenterSectionParams): MovieCenterSectionHook => {
+    return {};
   };
-};

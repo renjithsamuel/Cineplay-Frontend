@@ -15,13 +15,7 @@ export const sideMenuItems = {
 };
 
 export const PageSeparation = {
-  PlayerPages: [
-    "/",
-    "/movies",
-    "/dialogues",
-    "/music",
-    "/profile",
-  ],
+  PlayerPages: ["/", "/movies", "/dialogues", "/music", "/profile"],
   AdminPages: [
     "/",
     "/movies",

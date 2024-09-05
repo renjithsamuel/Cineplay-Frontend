@@ -4,12 +4,12 @@ import { makeStyles } from "@mui/styles";
 export const useMovieCenterSectionStyles = makeStyles((theme) => ({
   movieCenterSectionRoot: {
     width: "60vw",
-    marginTop: theme.spacing(10),
+    marginTop: theme.spacing(7),
     // backgroundColor  : 'red',
     display: "flex",
     // width : '100%',
     flexDirection: "column",
-    gap: theme.spacing(7),
+    gap: theme.spacing(4),
     justifyContent: "center",
   },
   dateAndInfo: {
@@ -23,7 +23,7 @@ export const useMovieCenterSectionStyles = makeStyles((theme) => ({
   },
   currImg: {
     backgroundColor: "red",
-    borderRadius: themeValues.border.borderRadiusHigh,
+    borderRadius: themeValues.border.borderRadiusVeryHigh,
   },
   allImagesWrap: {
     display: "flex",
@@ -33,7 +33,7 @@ export const useMovieCenterSectionStyles = makeStyles((theme) => ({
   allImage: {},
   allImg: {
     backgroundColor: "red",
-    borderRadius: themeValues.border.borderRadiusHigh,
+    borderRadius: themeValues.border.borderRadiusVeryHigh,
   },
   adHint: {
     display: "flex",

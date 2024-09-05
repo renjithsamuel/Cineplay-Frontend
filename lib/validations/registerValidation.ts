@@ -7,10 +7,7 @@ export const createRegisterValidation = (): Yup.AnySchema =>
       .matches(/^[a-zA-Z\s]+$/, "Name should only contain letters and spaces")
       .required("Name is required"),
     role: Yup.string()
-      .oneOf(
-        ["admin", "player"],
-        "Role must be either admin or player",
-      )
+      .oneOf(["admin", "player"], "Role must be either admin or player")
       .required("Role is required"),
     // dateOfBirth: Yup.date()
     //   .required("Date of Birth is required")
