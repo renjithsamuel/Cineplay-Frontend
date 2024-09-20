@@ -15,6 +15,7 @@ import { useBaseLayoutStyles } from "./BaseLayout.styles";
 import { LoginDialog } from "@/cineplay/lib/components/LoginDialog/LoginDialog";
 import { UnAuthorizedPage } from "@/cineplay/lib/components/UnAuthorizedPage/UnAuthorizedPage";
 import { ConnectingToServerDialog } from "@/cineplay/lib/components/ConnectingToServerDialog/ConnectingToServerDialog";
+import { NavBar } from "../../components/NavBar/NavBar";
 
 interface BaseLayoutProps {
   showSearchBar?: boolean;
@@ -38,6 +39,7 @@ export const BaseLayout: FC<BaseLayoutProps> = ({
     isLoading,
     isFetched,
     user,
+    menuItems,
     alertSnackbarMessage,
     handleCloseAlertSnackbar,
     isAlertSnackbarOpen,
@@ -54,16 +56,17 @@ export const BaseLayout: FC<BaseLayoutProps> = ({
 
   if (authenticatedOnly) {
     return (
-      <Box>
+      <Box className={classes.baseLayoutRoot}>
         {/* <LoginDialog /> */}
         {false ? (
           <ConnectingToServerDialog />
         ) : (
           (!authenticated || !isSuccess) && <LoginDialog />
         )}
-        {/* <NavBar showSearchBar pageName={pageName} >
-          {children}
-        </NavBar> */}
+        {/* navbar  */}
+        <NavBar menuItems={menuItems}></NavBar>
+        {/* page main content */}
+        <Box sx={{ zIndex: 1 }}>{children}</Box>
         <AlertSnackbar open={isAlertSnackbarOpen}>
           <Alert
             onClose={handleCloseAlertSnackbar}
@@ -77,10 +80,12 @@ export const BaseLayout: FC<BaseLayoutProps> = ({
   }
 
   return (
-    <Box>
-      {/* <NavBar showSearchBar pageName={pageName}>
-        {children}
-      </NavBar> */}
+    <Box className={classes.baseLayoutRoot}>
+      {/* navbar  */}
+      <NavBar menuItems={menuItems}></NavBar>
+      {/* page main content */}
+      <Box sx={{ zIndex: 1 }}>{children}</Box>
+      {/* snack bar */}
       <AlertSnackbar open={isAlertSnackbarOpen}>
         <Alert
           onClose={handleCloseAlertSnackbar}

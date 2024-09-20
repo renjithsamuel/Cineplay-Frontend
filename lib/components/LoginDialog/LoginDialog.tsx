@@ -130,31 +130,7 @@ export const LoginDialog = ({}: loginDialogParams) => {
                   >
                     {RegisterParams.map((param) => (
                       <>
-                        {param.keyForDB === "role" ? (
-                          <>
-                            <Field
-                              className={classes.textField}
-                              as={TextField}
-                              label="Role"
-                              value={values[param.keyForDB]}
-                              InputLabelProps={{
-                                shrink: values[param.keyForDB],
-                              }}
-                              name="role"
-                              fullWidth
-                              select
-                              error={touched.role && !!errors.role}
-                              helperText={touched.role && errors.role}
-                            >
-                              <MenuItem value={Role.Librarian}>
-                                {Role.Librarian}
-                              </MenuItem>
-                              <MenuItem value={Role.Patrons}>
-                                {Role.Patrons}
-                              </MenuItem>
-                            </Field>
-                          </>
-                        ) : param.keyForDB === "password" ? (
+                        {param.keyForDB === "password" ? (
                           <Field
                             className={classes.textField}
                             as={TextField}
@@ -249,12 +225,6 @@ export const RegisterParams = [
     inputLabel: "email : ",
     inputPlaceHolder: "Email",
     inputType: "email",
-  },
-  {
-    keyForDB: "role",
-    inputLabel: "role : ",
-    inputPlaceHolder: " Role  ",
-    inputType: "text",
   },
   {
     keyForDB: "password",

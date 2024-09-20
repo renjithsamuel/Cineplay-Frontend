@@ -1,10 +1,8 @@
 import { themeValues } from "@/cineplay/lib/constants/ThemeConstants";
 import { makeStyles } from "@mui/styles";
 
-export const useBaseLayoutStyles = makeStyles((theme) => ({
-  baseLayoutRoot: {
+export const useMusicStyles = makeStyles((theme) => ({
+  musicRoot: {
     backgroundColor: "black",
-    display: "flex",
-    // margin: themeValues.spacing(2),
   },
 }));

@@ -64,7 +64,6 @@ export const useLoginDialog = ({}: loginDialogHookProps): loginDialogHook => {
     : {
         name: "",
         email: "",
-        role: "",
         password: "",
       };
 
