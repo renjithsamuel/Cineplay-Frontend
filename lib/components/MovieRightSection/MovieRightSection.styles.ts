@@ -5,7 +5,7 @@ import { MdBorderColor } from "react-icons/md";
 export const useMovieRightSectionStyles = makeStyles((theme) => ({
   movieRightSectionRoot: {
     width: "30vw",
-    marginTop: theme.spacing(10),
+    marginTop: theme.spacing(7),
     gap: theme.spacing(1),
     display: "flex",
     flexDirection: "column",
@@ -112,7 +112,7 @@ export const useMovieRightSectionStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginTop: themeValues.spacing(7),
+    marginTop: themeValues.spacing(5),
   },
   answerInpBox: {
     position: "relative",
@@ -123,11 +123,16 @@ export const useMovieRightSectionStyles = makeStyles((theme) => ({
     color: themeValues.color.textGray,
     width: "100%",
     fontFamily: "'Poppins', sans-serif",
-    padding: themeValues.spacing(2),
+    fontSize: themeValues.font.fontSizeMedium,
+    // padding: themeValues.spacing(2),
+    paddingTop: themeValues.spacing(2.5),
+    paddingBottom: themeValues.spacing(2.5),
     paddingRight: themeValues.spacing(5),
+    paddingLeft: themeValues.spacing(2.5),
     "&::-webkit-input-placeholder": {
+      fontSize: themeValues.font.fontSizeMedium,
       color: themeValues.color.textGray,
-      opacity: 1,
+      opacity: 0.7,
     },
   },
 }));

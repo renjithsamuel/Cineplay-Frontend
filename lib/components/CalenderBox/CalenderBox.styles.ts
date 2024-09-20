@@ -19,7 +19,7 @@ export const useCalendarStyles = makeStyles((theme) => ({
     marginTop: themeValues.spacing(3),
     display: "grid",
     gridTemplateColumns: "repeat(7, 1fr)",
-    gap: "12px",
+    gap: "15px",
     textAlign: "center",
     marginBottom: "8px",
     fontSize: "small !important",

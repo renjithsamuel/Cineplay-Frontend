@@ -25,3 +25,9 @@ export const PageSeparation = {
     "/profile",
   ],
 };
+
+export enum LeaderboardType {
+  Daily = "Daily",
+  Monthly = "Monthly",
+  Yearly = "Yearly",
+}

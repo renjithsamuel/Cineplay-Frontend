@@ -27,6 +27,8 @@ const lightThemeValues = {
     rubyRedDark: "#BA0021",
     transparent: "transparent",
     hover: "#a3a3a3",
+    yellow: "yellow",
+    cineplayOrange: "#F38312",
   },
   font: {
     fontWeightThick: "700",
@@ -67,6 +69,12 @@ const lightThemeValues = {
     // cineplayBoxes: "linear-gradient(to top, grey 100%, black 100%)",
     cineplayBoxes:
       "linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(45,45,45,1) 0%, rgba(27,27,27,1) 100%)",
+    pointBoxDark:
+      "linear-gradient(180deg, rgba(126,126,126,1) 0%, rgba(126,126,126,1) 0%, rgba(73,73,73,1) 100%)",
+    pointBoxLight:
+      "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(183,183,183,1) 100%)",
+    loginBackground:
+      "linear-gradient(180deg, rgba(1, 0, 20, 1) 0%, rgba(30, 30, 30, 1) 0%, rgba(15, 15, 15, 1) 100%)",
   },
   oneByThree: "33.33%",
   sideNavWidth: "14%",

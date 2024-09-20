@@ -120,6 +120,7 @@ export const Calendar = () => {
             key={index}
             // variant="subtitle2"
             sx={{
+              fontWeight: "600",
               color:
                 index == daysOfWeek.length - 1 || index == 0
                   ? "#FC8812"
