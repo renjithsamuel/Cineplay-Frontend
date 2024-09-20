@@ -209,12 +209,12 @@ export const useBaseLayout = ({
       }
       setMenuItems(tempMenuItems);
       // if no menu is selected select /movie
-      if (
-        !currentSideMenu ||
-        currentSideMenu === "" ||
-        currentSideMenu.length === 0
-      )
-        setCurrentSideMenu(sideMenuItems.Movie.link);
+      // if (
+      //   !currentSideMenu ||
+      //   currentSideMenu === "" ||
+      //   currentSideMenu.length === 0
+      // )
+      //   setCurrentSideMenu(sideMenuItems.Movie.link);
     }
   }, [user]);
 
@@ -222,7 +222,7 @@ export const useBaseLayout = ({
   useEffect(() => {
     if (router?.pathname) {
       const tempCurrentMenu = router?.pathname?.split("/")[1];
-      if (tempCurrentMenu) setCurrentSideMenu(`/${tempCurrentMenu}`);
+      setCurrentSideMenu(`/${tempCurrentMenu}`);
     }
   }, [router?.pathname]);
 

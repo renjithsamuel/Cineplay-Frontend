@@ -5,7 +5,7 @@ export const globalConstants = {
 
 export const sideMenuItems = {
   // players
-  Movie: { name: "Movie", link: "/movies" },
+  Movie: { name: "Movie", link: "/" },
   Dialogue: { name: "Dialogue", link: "/dialogues" },
   Music: { name: "Music", link: "/music" },
   // admin
@@ -15,10 +15,9 @@ export const sideMenuItems = {
 };
 
 export const PageSeparation = {
-  PlayerPages: ["/", "/movies", "/dialogues", "/music", "/profile"],
+  PlayerPages: ["/", "/dialogues", "/music", "/profile"],
   AdminPages: [
     "/",
-    "/movies",
     "/dialogues",
     "/music",
     "/dashboard",

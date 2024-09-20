@@ -14,6 +14,11 @@ export const NavBar = ({ menuItems }: NavBarProps) => {
   const { currentSideMenu, user, DialogBox } = useNavBar();
   const classes = useNavBarStyles();
 
+  function printer(currentSideMenu: string, menuItemlink: string) {
+    console.log("xx currentSideMenu", currentSideMenu);
+    console.log("xx menuItem.link", menuItemlink);
+  }
+
   return (
     <Box className={classes.navBarRoot}>
       <Link href={sideMenuItems.Movie.link} className={classes.logo}>
@@ -28,11 +33,11 @@ export const NavBar = ({ menuItems }: NavBarProps) => {
       </Link>
       {/*  center menu items */}
       <Box className={classes.centerMenuWrap}>
-        {menuItems.map((menuItem, index) => {
+        {menuItems.map((menuItem) => {
           return (
             <Link key={menuItem.link} href={menuItem?.link}>
               <Box
-                // onClick={() => handleSideMenuClick(menuItem.link)}
+                onClick={() => printer(currentSideMenu, menuItem.link)}
                 className={clsx(classes.sideMenuItem, {
                   [classes.currentSideMenu]: currentSideMenu === menuItem.link,
                 })}
