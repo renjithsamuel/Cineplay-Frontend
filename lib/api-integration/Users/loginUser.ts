@@ -13,7 +13,7 @@ export type LoginUserResponse = {
 export const loginUserAPI = async ({
   user,
 }: LoginUserRequest): Promise<AxiosResponse<LoginUserResponse>> => {
-  return PublicAxios.post(`/users/login`, user);
+  return PublicAxios.post(`/auth/login`, user);
 };
 
 export const useLoginUserAPI = (): UseMutationResult<

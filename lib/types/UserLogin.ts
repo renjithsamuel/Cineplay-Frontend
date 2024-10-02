@@ -1,11 +1,11 @@
 export type UserLogin = {
-  email: string;
+  username: string;
   password: string;
 };
 
 export type UserRegister = {
   name: string;
   email: string;
-  dateOfBirth: Date;
   password: string;
+  type: string;
 };

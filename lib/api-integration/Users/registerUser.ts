@@ -13,7 +13,7 @@ export type RegisterUserResponse = {
 export const registerUserAPI = async ({
   user,
 }: RegisterUserRequest): Promise<AxiosResponse<RegisterUserResponse>> => {
-  return PublicAxios.post(`/users`, user);
+  return PublicAxios.post(`/auth/register`, user);
 };
 
 export const useRegisterUserAPI = (): UseMutationResult<
