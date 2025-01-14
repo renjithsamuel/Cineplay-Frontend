@@ -58,11 +58,11 @@ export const useLoginDialog = ({}: loginDialogHookProps): loginDialogHook => {
   // login relater validation and formik
   const initialValues = isLogin
     ? {
-        email: "",
+        username: "",
         password: "",
       }
     : {
-        name: "",
+        username: "",
         email: "",
         password: "",
       };
@@ -75,7 +75,8 @@ export const useLoginDialog = ({}: loginDialogHookProps): loginDialogHook => {
   const handleSubmit = async (values: any) => {
     if (isLogin) {
       const response = await loginUser({ user: values });
-      if (response.data.token) Cookie.access_token = response.data.token;
+      console.log("response : ",response);
+      if (response.data.data.token) Cookie.access_token = response.data.data.token;
     } else {
       const registerResponse = await registerUser({ user: values });
       if (registerResponse.status === 409) {

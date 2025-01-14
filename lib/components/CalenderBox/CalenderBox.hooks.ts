@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import { MonthsArray } from "../../constants/Months";
+import { useGameContext } from "../../context/GameContext";
+import dayjs from "dayjs";
+import { QueryKeys } from "../../constants/Querykeys";
+import { useQueryClient } from "react-query";
 
 interface Day {
   date: number;
@@ -26,7 +30,9 @@ interface UseCalendarHook {
 }
 
 export const useCalendar = (): UseCalendarHook => {
-  const [date, setDate] = useState(new Date());
+  const queryClient = useQueryClient();
+  const {movieId, setMovieId} = useGameContext();
+  let date = dayjs(movieId).toDate(); 
   const [month, setMonth] = useState(date.getMonth());
   const [year, setYear] = useState(date.getFullYear());
   const [isMonthView, setIsMonthView] = useState(false);
@@ -75,7 +81,11 @@ export const useCalendar = (): UseCalendarHook => {
   };
 
   const handleDateClick = (date: number) => {
-    setSelectedDate(date);
+    if(!!date) {
+      setMovieId(dayjs(new Date(year, month, date)).format("YYYY-MM-DD"));
+      queryClient.invalidateQueries(QueryKeys.GET_GAME);
+      setSelectedDate(date);
+    }
   };
 
   const currentMonth = getMonthName(month);

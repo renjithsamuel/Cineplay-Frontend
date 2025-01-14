@@ -72,13 +72,13 @@ export const LoginDialog = ({}: loginDialogParams) => {
                     <Field
                       className={classes.textField}
                       as={TextField}
-                      label="Email"
-                      name="email"
+                      label="Username"
+                      name="username"
                       fullWidth
-                      InputLabelProps={{ shrink: values.email }}
-                      value={values.email}
-                      error={touched.email && !!errors.email}
-                      helperText={touched.email && errors.email}
+                      InputLabelProps={{ shrink: values.username }}
+                      value={values.username}
+                      error={touched.username && !!errors.username}
+                      helperText={touched.username && errors.username}
                     />
                     <Field
                       className={classes.textField}
@@ -215,7 +215,7 @@ export const LoginDialog = ({}: loginDialogParams) => {
 
 export const RegisterParams = [
   {
-    keyForDB: "name",
+    keyForDB: "username",
     inputLabel: "username : ",
     inputPlaceHolder: "Username",
     inputType: "text",

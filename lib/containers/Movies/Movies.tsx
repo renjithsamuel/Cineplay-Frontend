@@ -10,23 +10,24 @@ import { MovieRightSection } from "../../components/MovieRightSection/MovieRight
 interface MoviesProps {}
 
 // 4 requests
-// - post get request will fetch each image every time - : movieID - date, :
+// - post get request will fetch each image every time - : movieID - date, : YYYY-MM-DD
 // - put request on entering an input
 // search api to fetch the suggestion text - drop down with debounce
 // change in date should trigger post again
 
 // add game context wrap- gameID, date of currenty displayed game - movieID, game, user
+// todo : update new context, game context
 export const Movies: FC<MoviesProps> = ({}) => {
-  const { AllImages } = useMovies({});
+  const { currentClue, setCurrentClue, isGetGameLoading } = useMovies({});
 
   const classes = useMoviesStyles();
 
   return (
     <Box className={classes.moviesRoot}>
       {/*  center section */}
-      <MovieCenterSection AllImages={AllImages} />
+      <MovieCenterSection setCurrentClue={setCurrentClue} currentClue={currentClue} isGetGameLoading={isGetGameLoading} />
       {/* right section */}
-      <MovieRightSection />
+      <MovieRightSection setCurrentClue={setCurrentClue}/>
     </Box>
   );
 };

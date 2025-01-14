@@ -23,6 +23,7 @@ import {
 } from "../../constants/GlobalConstants";
 import { SideNavItem } from "../../types/SideNav";
 import { Role } from "../../constants/Role";
+import { useGetUserAPI } from "../../api-integration/Users/getUser";
 // import { useGetTokenExpiryAPI } from "@/cineplay/api-integration/Users/getTokenExpiry";
 
 type BaseLayoutHook = {
@@ -70,29 +71,29 @@ export const useBaseLayout = ({
     return access_token;
   };
 
-  // const {
-  //   data: getUserResponse,
-  //   isError,
-  //   isSuccess,
-  //   isLoading,
-  //   isFetched,
-  // } = useGetUserAPI(!!getAccessToken());
+  const {
+    data: getUserResponse,
+    isError,
+    isSuccess,
+    isLoading,
+    isFetched,
+  } = useGetUserAPI(!!getAccessToken());
 
   // const { data: tokenexpiryResponse } = useGetTokenExpiryAPI();
 
   // mocking api data
-  const tokenexpiryResponse = { status: 200, data: { message: "" } };
-  const getUserResponse = { data: mockUser };
-  const isError = false;
-  const isSuccess = true;
-  const isLoading = false;
-  const isFetched = true;
+  // const tokenexpiryResponse = { status: 200, data: { message: "" } };
+  // const getUserResponse = { data: mockUser };
+  // const isError = false;
+  // const isSuccess = true;
+  // const isLoading = false;
+  // const isFetched = true;
 
   useEffect(() => {
     if (isSuccess) {
       // verify if token is present or not
 
-      // setAuthenticated(true);
+      setAuthenticated(true);
       if (!!getAccessToken()) {
         setAuthenticated(true);
       } else {
@@ -106,19 +107,19 @@ export const useBaseLayout = ({
     }
   }, [getUserResponse?.data, isSuccess]);
 
-  // check for token expiry
-  useEffect(() => {
-    if (!!tokenexpiryResponse) {
-      if (
-        tokenexpiryResponse.status == 401 &&
-        tokenexpiryResponse?.data.message == "token has expired"
-      ) {
-        // logout
-        Cookie.logout();
-        setAuthenticated(false);
-      }
-    }
-  }, [tokenexpiryResponse]);
+  // // check for token expiry
+  // useEffect(() => {
+  //   if (!!tokenexpiryResponse) {
+  //     if (
+  //       tokenexpiryResponse.status == 401 &&
+  //       tokenexpiryResponse?.data.message == "token has expired"
+  //     ) {
+  //       // logout
+  //       Cookie.logout();
+  //       setAuthenticated(false);
+  //     }
+  //   }
+  // }, [tokenexpiryResponse]);
 
   const {
     alertSnackbarMessage,
@@ -155,7 +156,6 @@ export const useBaseLayout = ({
   useEffect(() => {
     if (user && isSuccess) {
       let tempMenuItems: SideNavItem[];
-      if (user.role === Role.Player) {
         tempMenuItems = [
           {
             name: sideMenuItems.Movie.name,
@@ -172,49 +172,9 @@ export const useBaseLayout = ({
             icon: "./music.svg",
             link: sideMenuItems.Music.link,
           },
-          // {
-          //   name: sideMenuItems.Profile.name,
-          //   icon: IoHeartSharp,
-          //   link: sideMenuItems.Profile.link,
-          // },
+
         ];
-      } else {
-        tempMenuItems = [
-          // {
-          //   name: sideMenuItems.Dashboard.name,
-          //   icon: RiDashboardFill,
-          //   link: sideMenuItems.Dashboard.link,
-          // },
-          {
-            name: sideMenuItems.Movie.name,
-            icon: "./camera.svg",
-            link: sideMenuItems.Movie.link,
-          },
-          {
-            name: sideMenuItems.Dialogue.name,
-            icon: "./wave.svg",
-            link: sideMenuItems.Dialogue.link,
-          },
-          {
-            name: sideMenuItems.Music.name,
-            icon: "./music.svg",
-            link: sideMenuItems.Music.link,
-          },
-          // {
-          //   name: sideMenuItems.Profile.name,
-          //   icon: IoHeartSharp,
-          //   link: sideMenuItems.Profile.link,
-          // },
-        ];
-      }
       setMenuItems(tempMenuItems);
-      // if no menu is selected select /movie
-      // if (
-      //   !currentSideMenu ||
-      //   currentSideMenu === "" ||
-      //   currentSideMenu.length === 0
-      // )
-      //   setCurrentSideMenu(sideMenuItems.Movie.link);
     }
   }, [user]);
 

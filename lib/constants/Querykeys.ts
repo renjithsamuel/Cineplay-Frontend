@@ -6,4 +6,8 @@ export enum QueryKeys {
   LOGIN_USER = "LOGIN_USER",
   REGISTER_USER = "REGISTER_USER",
   UPDATE_USER = "UPDATE_USER",
+  
+  // Game Related
+  GET_GAME = "GET_GAME",
+  UPDATE_GAME = "UPDATE_GAME",
 }
