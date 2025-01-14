@@ -22,7 +22,6 @@ export const useMovies = ({}: MoviesParams): MoviesHook => {
     data: game,
     isLoading: isGetGameLoading,
     isError: isGetGameError,
-    isSuccess: isGetGameSuccess,
   } = UseGetGameAPI({
     movieId: movieId,
     type: "FRAMES",
@@ -45,6 +44,19 @@ export const useMovies = ({}: MoviesParams): MoviesHook => {
   }, [isGetGameError]);
 
   useEffect(() => {
+    if (!game) {
+      setSnackBarError({
+        ErrorMessage: "No game data found for this date!",
+        ErrorSeverity: "info",
+      });
+    }
+  }, [game, setSnackBarError]);
+
+
+
+  useEffect(() => {
+      console.log("movies: settingGame", game);
+      console.log("movies: movieId", movieId);
       setGame(game?.data || ({} as Game));
   }, [game]);
 

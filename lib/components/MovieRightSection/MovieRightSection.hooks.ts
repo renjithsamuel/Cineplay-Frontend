@@ -1,10 +1,11 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { UseUpdateGameAPI } from "../../api-integration/Games/updateGame";
 import { usePageContext } from "../../context/PageContext";
 import { Game } from "../../entity/Game/game";
 import { useGameContext } from "../../context/GameContext";
 
 type MovieRightSectionHook = {
+  confettiVisible: boolean;
   game: Game;
   handleSubmit: (value: string) => Promise<void>;
 };
@@ -16,8 +17,10 @@ type MovieRightSectionParams = {
 export const useMovieRightSection = ({
   setCurrentClue,
 }: MovieRightSectionParams): MovieRightSectionHook => {
+  const [confettiVisible, setConfettiVisible] = useState(false);
+
   const { setSnackBarError } = usePageContext();
-  const { game} = useGameContext();
+  const { game } = useGameContext();
 
   const {
     mutateAsync: updateGame,
@@ -36,14 +39,14 @@ export const useMovieRightSection = ({
 
   // login or register submit
   const handleSubmit = async (value: string) => {
-    if(game.completed) return;
-    if(game.cluesUsed == 5){
+    if (game.completed) return;
+    if (game.cluesUsed == 5) {
       setSnackBarError({
         ErrorMessage: "You have used all the clues",
         ErrorSeverity: "warning",
       });
-      return
-    };
+      return;
+    }
     if (!value.trim()) {
       setSnackBarError({
         ErrorMessage: "Answer cannot be empty",
@@ -53,12 +56,22 @@ export const useMovieRightSection = ({
     }
 
     try {
-      const registerResponse = await updateGame({
+      const response = await updateGame({
         value: value.trim(),
         gameId: game.gameId,
       });
 
-      if (registerResponse.status === 200) {
+      if (response?.data.completed) {
+        setConfettiVisible(true);
+        // Automatically hide confetti after 5 seconds
+        setTimeout(() => setConfettiVisible(false), 2000);
+        setSnackBarError({
+          ErrorMessage: "Congrats you have completed the game!",
+          ErrorSeverity: "info",
+        });
+      }
+
+      if (response.status === 200) {
         console.log("game.cluesUsed : ", game.cluesUsed);
         if (game.cluesUsed + 1 <= 5) setCurrentClue(game.cluesUsed + 1);
       } else {
@@ -75,5 +88,5 @@ export const useMovieRightSection = ({
       });
     }
   };
-  return { game, handleSubmit };
+  return { game, handleSubmit, confettiVisible };
 };

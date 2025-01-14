@@ -31,7 +31,9 @@ interface UseCalendarHook {
 
 export const useCalendar = (): UseCalendarHook => {
   const queryClient = useQueryClient();
-  const {movieId, setMovieId} = useGameContext();
+  const {movieId, setMovieId, game} = useGameContext();
+  
+
   let date = dayjs(movieId).toDate(); 
   const [month, setMonth] = useState(date.getMonth());
   const [year, setYear] = useState(date.getFullYear());
@@ -84,6 +86,8 @@ export const useCalendar = (): UseCalendarHook => {
     if(!!date) {
       setMovieId(dayjs(new Date(year, month, date)).format("YYYY-MM-DD"));
       queryClient.invalidateQueries(QueryKeys.GET_GAME);
+      console.log("calendar : movieId", movieId);
+      console.log("calendar: game: ", game);
       setSelectedDate(date);
     }
   };

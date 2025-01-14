@@ -6,6 +6,7 @@ import { FaPlay } from "react-icons/fa";
 import { useMovies } from "./Movies.hooks";
 import { MovieCenterSection } from "../../components/MovieCenterSection/MovieCenterSection";
 import { MovieRightSection } from "../../components/MovieRightSection/MovieRightSection";
+import Confetti from "react-confetti"; 
 
 interface MoviesProps {}
 

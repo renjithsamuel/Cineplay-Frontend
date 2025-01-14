@@ -19,7 +19,11 @@ export const useMovieCenterSection = ({
 }: MovieCenterSectionParams): MovieCenterSectionHook => {
   const { game } = useGameContext();
   let images = game?.imageLinks || [];
-  if (images.length < 5) {
+
+  if (!game) {
+    // Game is null; show locked images
+    images = new Array(5).fill("./lock.png");
+  } else if (images.length < 5) {
     const lockIcon = "./lock.png";
     while (images.length < 5) {
       images.push(lockIcon);
@@ -27,10 +31,10 @@ export const useMovieCenterSection = ({
   }
 
   const handleClueClick = (clue: number) => {
-    if(clue > game?.imageLinks.length) return;
-    if (
-      (game?.completed && game?.imageLinks.length >= clue) ||
-      clue <= game?.imageLinks.length
+    if((clue > game?.cluesUsed) && !game.completed) return;
+    if ( 
+      (game?.completed && game?.imageLinks?.length >= clue) ||
+      clue <= game?.imageLinks?.length
     ) {
       setCurrentClue(clue);
     }

@@ -6,7 +6,7 @@ import { themeValues } from "../../constants/ThemeConstants";
 import { Calendar } from "../CalenderBox/CalenderBox";
 import { Leaderboard } from "../Leaderboard/Leaderboard";
 import { useMovieRightSection } from "./MovieRightSection.hooks";
-import { Game } from "../../entity/Game/game";
+import Confetti from "react-confetti"; 
 
 interface MovieRightSectionProps {
   setCurrentClue: Dispatch<SetStateAction<number>>;
@@ -15,12 +15,14 @@ interface MovieRightSectionProps {
 export const MovieRightSection: FC<MovieRightSectionProps> = ({
   setCurrentClue,
 }) => {
-  const { handleSubmit, game } = useMovieRightSection({ setCurrentClue: setCurrentClue });
+  const { confettiVisible, handleSubmit, game } = useMovieRightSection({ setCurrentClue: setCurrentClue });
 
   const classes = useMovieRightSectionStyles();
 
   return (
     <Box className={classes.movieRightSectionRoot}>
+             {confettiVisible && <Confetti style={{transition: "opacity 0.5s ease-in"}}/>}
+      
       {/* streak , arena and profile */}
       <Box className={classes.streakArenaAndProfile}>
         {/* streak */}
