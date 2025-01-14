@@ -1,22 +1,28 @@
 import { Box, TextField, Typography } from "@mui/material";
-import { FC } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 import { useMovieRightSectionStyles } from "@/cineplay/lib/components/MovieRightSection/MovieRightSection.styles";
 import { CgProfile } from "react-icons/cg";
 import { themeValues } from "../../constants/ThemeConstants";
 import { Calendar } from "../CalenderBox/CalenderBox";
 import { Leaderboard } from "../Leaderboard/Leaderboard";
+import { useMovieRightSection } from "./MovieRightSection.hooks";
+import Confetti from "react-confetti"; 
 
-interface MovieRightSectionProps {}
+interface MovieRightSectionProps {
+  setCurrentClue: Dispatch<SetStateAction<number>>;
+}
 
-export const MovieRightSection: FC<MovieRightSectionProps> = ({}) => {
-  // const {
-
-  // } = useMovieRightSection({ });
+export const MovieRightSection: FC<MovieRightSectionProps> = ({
+  setCurrentClue,
+}) => {
+  const { confettiVisible, handleSubmit, game } = useMovieRightSection({ setCurrentClue: setCurrentClue });
 
   const classes = useMovieRightSectionStyles();
 
   return (
     <Box className={classes.movieRightSectionRoot}>
+             {confettiVisible && <Confetti style={{transition: "opacity 0.5s ease-in"}}/>}
+      
       {/* streak , arena and profile */}
       <Box className={classes.streakArenaAndProfile}>
         {/* streak */}
@@ -71,48 +77,14 @@ export const MovieRightSection: FC<MovieRightSectionProps> = ({}) => {
           name="answerInp"
           placeholder="Your Answer Here..."
           className={classes.answerInpBox}
+          onKeyDown={(e) => {
+        if (e.key === "Enter" && !game.completed) {
+          handleSubmit(e.currentTarget.value);
+          e.currentTarget.value = "";
+        }
+          }}
+          disabled={game?.completed}
         />
-        {/* <TextField
-            label="Your Answer Here..."
-            variant="outlined" // variant that supports background color
-            InputProps={{
-              disableUnderline: true, // removes the underline
-              style: {
-                backgroundColor: "#232323",
-                color: "#ffffff", // contrasting text color
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "#ffffff", // label text color
-                fontFamily: "'Poppins', sans-serif",
-                // padding:themeValues.spacing(2),
-              },
-            }}
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "#232323", // default outline color
-                },
-                "&:hover fieldset": {
-                  borderColor: "#232323", // outline color on hover
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "#232323", // outline color when focused
-                },
-              },
-              "& .MuiInputBase-root": {
-                backgroundColor: "#232323", // input background color
-                // background: themeValues.gradient.cineplayBoxes,
-                borderRadius: themeValues.border.borderRadiusVeryHigh,
-              },
-              "& .MuiInputLabel-root": {
-                color: "#ffffff", // Label text color
-                fontFamily: "'Poppins', sans-serif", // Font for the label text
-              },
-            }}
-            fullWidth // make the input full width
-          /> */}
       </Box>
       {/* custom calander selector */}
       <Calendar />

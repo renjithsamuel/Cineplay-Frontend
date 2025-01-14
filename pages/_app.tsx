@@ -11,6 +11,7 @@ import ErrorBoundary from "@/cineplay/lib/utils/errorBoundary";
 import { Theme } from "@mui/material/styles";
 import { PageContextProvider } from "@/cineplay/lib/context/PageContext";
 import { UserContextProvider } from "@/cineplay/lib/context/UserContext";
+import { GameContext, GameContextProvider } from "../lib/context/GameContext";
 
 declare module "@mui/styles/defaultTheme" {
   interface DefaultTheme extends Theme {}
@@ -41,11 +42,13 @@ export default function App({
           <CacheProvider value={emotionCache}>
             <QueryClientProvider client={queryClient}>
               <main className={poppins.className}>
+                <GameContextProvider>
                 <PageContextProvider>
                   <UserContextProvider>
                     <Component {...pageProps} />
                   </UserContextProvider>
                 </PageContextProvider>
+                </GameContextProvider>
               </main>
             </QueryClientProvider>
           </CacheProvider>

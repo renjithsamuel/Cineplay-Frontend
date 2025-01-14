@@ -3,17 +3,17 @@ import { useMutation, UseMutationResult, useQueryClient } from "react-query";
 import { QueryKeys } from "@/cineplay/lib/constants/Querykeys";
 import { PublicAxios } from "../index";
 import { UserRegister } from "@/cineplay/lib/types/UserLogin";
+import { CommonResponse } from "../../types/Common";
 
 export type RegisterUserRequest = { user: UserRegister };
 
-export type RegisterUserResponse = {
-  message: string;
-};
+export type RegisterUserResponse = CommonResponse;
 
 export const registerUserAPI = async ({
   user,
 }: RegisterUserRequest): Promise<AxiosResponse<RegisterUserResponse>> => {
-  return PublicAxios.post(`/users`, user);
+  user.type = "CP_ACCOUNT"
+  return PublicAxios.post(`/auth/register`, user);
 };
 
 export const useRegisterUserAPI = (): UseMutationResult<

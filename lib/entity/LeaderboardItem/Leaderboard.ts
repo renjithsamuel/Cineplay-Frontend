@@ -1,28 +1,32 @@
 import { Role } from "@/cineplay/lib/constants/Role";
 
+export interface IUser {
+  _id: string;
+  username: string;
+  userId: string;
+  email: string;
+}
+
 export interface ILeaderboardItem {
-  userID: string;
-  name: string;
-  rank: number;
-  points: number;
-  createdAt: Date;
-  updatedAt: Date;
+  _id: string;
+  userId: string;
+  score: number;
+  user: IUser[];
+  id: string;
 }
 
 export class LeaderboardItem implements ILeaderboardItem {
-  readonly userID: string;
-  name: string;
-  rank: number;
-  points: number;
-  createdAt: Date;
-  updatedAt: Date;
+  readonly _id: string;
+  userId: string;
+  score: number;
+  user: IUser[];
+  id: string;
 
   constructor(leaderboardItem: ILeaderboardItem) {
-    this.userID = leaderboardItem.userID;
-    this.name = leaderboardItem.name;
-    this.rank = leaderboardItem.rank;
-    this.points = leaderboardItem.points;
-    this.createdAt = leaderboardItem.createdAt;
-    this.updatedAt = leaderboardItem.updatedAt;
+    this._id = leaderboardItem._id;
+    this.userId = leaderboardItem.userId;
+    this.score = leaderboardItem.score;
+    this.user = leaderboardItem.user;
+    this.id = leaderboardItem.id;
   }
 }

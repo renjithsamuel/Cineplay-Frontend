@@ -1,19 +1,26 @@
-import { Box, IconButton } from "@mui/material";
-import { FC } from "react";
+import { Box, CircularProgress, IconButton } from "@mui/material";
+import { Dispatch, FC, SetStateAction } from "react";
 import { useMovieCenterSectionStyles } from "./MovieCenterSection.styles";
 import { FiAlertCircle } from "react-icons/fi";
 import { FaPlay } from "react-icons/fa";
+import { Game } from "../../entity/Game/game";
+import { useMovieCenterSection } from "./MovieCenterSection.hooks";
 
 interface MovieCenterSectionProps {
-  AllImages: string[];
+  isGetGameLoading: boolean;
+  currentClue: number;
+  setCurrentClue: Dispatch<SetStateAction<number>>;
 }
 
 export const MovieCenterSection: FC<MovieCenterSectionProps> = ({
-  AllImages,
+  isGetGameLoading,
+  currentClue,
+  setCurrentClue,
 }) => {
-  // const {
-
-  // } = useMovieCenterSection({ });
+  const { images, handleClueClick } = useMovieCenterSection({
+    currentClue,
+    setCurrentClue,
+  });
 
   const classes = useMovieCenterSectionStyles();
 
@@ -23,24 +30,44 @@ export const MovieCenterSection: FC<MovieCenterSectionProps> = ({
       <Box className={classes.currentImage}>
         {/*  date and info */}
         <Box className={classes.dateAndInfo}>
-          <Box>November 1</Box>
+          <Box>{}</Box>
           <Box>
             <IconButton>
               <FiAlertCircle color="white" />
             </IconButton>
           </Box>
         </Box>
-        <img
-          src={"./logo.svg"}
-          width={900}
-          height={400}
-          alt={"img"}
-          className={classes.currImg}
-        />
+        {!isGetGameLoading ? (
+          <img
+            src={images[currentClue - 1]}
+            width={900}
+            height={400}
+            alt={"img"}
+            className={classes.currImg}
+            style={{
+              opacity: 1,
+              transition: "opacity 0.5s ease-in",
+            }}
+          />
+        ) : (
+          <Box
+            width={900}
+            height={400}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              opacity: 1,
+              transition: "opacity 0.5s ease-in",
+            }}
+          >
+            <CircularProgress sx={{ color: "white" }} />
+          </Box>
+        )}
       </Box>
       {/* All images */}
       <Box className={classes.allImagesWrap}>
-        {AllImages.map((img, index) => {
+        {images.map((img, index) => {
           return (
             <Box key={index} className={classes.allImage}>
               <img
@@ -49,6 +76,7 @@ export const MovieCenterSection: FC<MovieCenterSectionProps> = ({
                 height={80}
                 alt={"img"}
                 className={classes.allImg}
+                onClick={() => handleClueClick(index + 1)}
               />
             </Box>
           );
