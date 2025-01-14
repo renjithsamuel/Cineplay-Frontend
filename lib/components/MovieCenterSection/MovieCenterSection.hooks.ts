@@ -40,5 +40,5 @@ export const useMovieCenterSection = ({
     }
   };
 
-  return { game, images, handleClueClick };
+  return { game, images, handleClueClick, };
 };

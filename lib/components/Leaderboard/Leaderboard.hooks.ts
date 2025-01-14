@@ -9,7 +9,7 @@ interface UseLeaderboardHook {
   handleClose: () => void;
   currentLeaderboardType: LeaderboardType;
   handleLeaderboardTypeChange: (leaderboardType: LeaderboardType) => void;
-  handleSelectUser: (userID: string) => void;
+  handleSelectUser: (userId: string) => void;
 }
 
 export const useLeaderboard = (): UseLeaderboardHook => {
@@ -31,8 +31,8 @@ export const useLeaderboard = (): UseLeaderboardHook => {
     setCurrentLeaderboardType(leaderboardType);
   };
 
-  const handleSelectUser = (userID: string) => {
-    setCurrentSelectedUser(userID);
+  const handleSelectUser = (userId: string) => {
+    setCurrentSelectedUser(userId);
   };
 
   return {
