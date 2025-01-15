@@ -10,7 +10,7 @@ import { Cookie } from "@/cineplay/lib/utils/cookies";
 import { useEffect, useState } from "react";
 import { ImBooks } from "react-icons/im";
 import { LiaBookSolid } from "react-icons/lia";
-import { mockUser } from "@/cineplay/lib/entity/User/User.mock";
+// import { mockUser } from "@/cineplay/lib/entity/User/User.mock";
 import { GrTransaction } from "react-icons/gr";
 import { IoAnalyticsOutline, IoHeartSharp } from "react-icons/io5";
 import { RiDashboardFill } from "react-icons/ri";
