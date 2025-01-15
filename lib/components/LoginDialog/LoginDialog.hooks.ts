@@ -74,6 +74,8 @@ export const useLoginDialog = ({}: loginDialogHookProps): loginDialogHook => {
   // login or register submit
   const handleSubmit = async (values: any) => {
     if (isLogin) {
+      delete values.email; // Remove the email key if it exists
+      delete values.type; // Remove the type key if it exists
       const response = await loginUser({ user: values });
       console.log("response : ", response);
       if (response.data.data.token)
