@@ -35,7 +35,7 @@ export const useLoginUserAPI = (): UseMutationResult<
     onSuccess: () => {
       queryClient.invalidateQueries(QueryKeys.LOGIN_USER);
       queryClient.invalidateQueries(QueryKeys.GET_USER);
-      // window.location.reload();
+      window.location.reload();
     },
   });
 };

@@ -15,9 +15,10 @@ interface MovieRightSectionProps {
 export const MovieRightSection: FC<MovieRightSectionProps> = ({
   setCurrentClue,
 }) => {
-  const { confettiVisible, handleSubmit, game } = useMovieRightSection({
-    setCurrentClue: setCurrentClue,
-  });
+  const { handleLogout, confettiVisible, handleSubmit, game } =
+    useMovieRightSection({
+      setCurrentClue: setCurrentClue,
+    });
 
   const classes = useMovieRightSectionStyles();
 
@@ -69,7 +70,7 @@ export const MovieRightSection: FC<MovieRightSectionProps> = ({
           </Box>
         </Box> */}
         {/* Profile */}
-        <Box className={classes.profile}>
+        <Box className={classes.profile} onClick={() => handleLogout()}>
           <CgProfile size={40} />
         </Box>
       </Box>

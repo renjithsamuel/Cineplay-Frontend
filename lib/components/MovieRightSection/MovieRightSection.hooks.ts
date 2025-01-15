@@ -3,11 +3,14 @@ import { UseUpdateGameAPI } from "../../api-integration/Games/updateGame";
 import { usePageContext } from "../../context/PageContext";
 import { Game } from "../../entity/Game/game";
 import { useGameContext } from "../../context/GameContext";
+import { Cookie } from "@/cineplay/lib/utils/cookies";
+import { useUserContext } from "../../context/UserContext";
 
 type MovieRightSectionHook = {
   confettiVisible: boolean;
   game: Game;
   handleSubmit: (value: string) => Promise<void>;
+  handleLogout: () => void;
 };
 
 type MovieRightSectionParams = {
@@ -19,6 +22,7 @@ export const useMovieRightSection = ({
 }: MovieRightSectionParams): MovieRightSectionHook => {
   const [confettiVisible, setConfettiVisible] = useState(false);
 
+  const { setAuthenticated } = useUserContext();
   const { setSnackBarError } = usePageContext();
   const { game } = useGameContext();
 
@@ -88,5 +92,10 @@ export const useMovieRightSection = ({
       });
     }
   };
-  return { game, handleSubmit, confettiVisible };
+
+  const handleLogout = () => {
+    Cookie.logout();
+    setAuthenticated(false);
+  };
+  return { game, handleSubmit, confettiVisible, handleLogout };
 };
