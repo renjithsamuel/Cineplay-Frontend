@@ -2,7 +2,7 @@ import { useLoginUserAPI } from "@/cineplay/lib/api-integration/Users/loginUser"
 import { useRegisterUserAPI } from "@/cineplay/lib/api-integration/Users/registerUser";
 import { usePageContext } from "@/cineplay/lib/context/PageContext";
 import { User } from "@/cineplay/lib/entity/User/User";
-import { mockUsers } from "@/cineplay/lib/entity/User/User.mock";
+// import { mockUsers } from "@/cineplay/lib/entity/User/User.mock";
 import { UserLogin, UserRegister } from "@/cineplay/lib/types/UserLogin";
 import { Cookie } from "@/cineplay/lib/utils/cookies";
 import { createLoginValidation } from "@/cineplay/lib/validations/loginValidation";
