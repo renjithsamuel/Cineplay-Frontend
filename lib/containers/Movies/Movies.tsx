@@ -6,7 +6,7 @@ import { FaPlay } from "react-icons/fa";
 import { useMovies } from "./Movies.hooks";
 import { MovieCenterSection } from "../../components/MovieCenterSection/MovieCenterSection";
 import { MovieRightSection } from "../../components/MovieRightSection/MovieRightSection";
-import Confetti from "react-confetti"; 
+import Confetti from "react-confetti";
 
 interface MoviesProps {}
 
@@ -26,9 +26,13 @@ export const Movies: FC<MoviesProps> = ({}) => {
   return (
     <Box className={classes.moviesRoot}>
       {/*  center section */}
-      <MovieCenterSection setCurrentClue={setCurrentClue} currentClue={currentClue} isGetGameLoading={isGetGameLoading} />
+      <MovieCenterSection
+        setCurrentClue={setCurrentClue}
+        currentClue={currentClue}
+        isGetGameLoading={isGetGameLoading}
+      />
       {/* right section */}
-      <MovieRightSection setCurrentClue={setCurrentClue}/>
+      <MovieRightSection setCurrentClue={setCurrentClue} />
     </Box>
   );
 };

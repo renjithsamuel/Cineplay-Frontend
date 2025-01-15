@@ -12,7 +12,7 @@ import { FaCrown } from "react-icons/fa";
 import { themeValues } from "../../constants/ThemeConstants";
 import { FaAngleDown } from "react-icons/fa6";
 import { LeaderboardType } from "../../constants/GlobalConstants";
-import { mockLeaderboardItems } from "../../entity/LeaderboardItem/Leaderboard.mock";
+// import { mockLeaderboardItems } from "../../entity/LeaderboardItem/Leaderboard.mock";
 import { LeaderboardListItem } from "../LeaderboardListItem/LeaderboardListItem";
 
 export const Leaderboard = () => {
@@ -55,19 +55,19 @@ export const Leaderboard = () => {
       </Box>
       {/* map leaderboard items */}
       <Box className={classes.leaderboardItems}>
-        {mockLeaderboardItems.map((leaderboardItem, index) => (
+        {/* {mockLeaderboardItems.map((leaderboardItem, index) => (
           <Box
-            key={leaderboardItem.userID}
-            onClick={() => handleSelectUser(leaderboardItem.userID)}
+            key={leaderboardItem.userId}
+            onClick={() => handleSelectUser(leaderboardItem.userId)}
           >
             <LeaderboardListItem
-              name={leaderboardItem.name}
-              points={leaderboardItem.points}
-              rank={leaderboardItem.rank}
-              selected={currentSelectedUser === leaderboardItem.userID}
+              name={leaderboardItem.user[0]?.username}
+              points={leaderboardItem.score}
+              rank={1 || leaderboardItem.score}
+              selected={currentSelectedUser === leaderboardItem.userId}
             />
           </Box>
-        ))}
+        ))} */}
       </Box>
       {/*  view all button */}
       <Box className={classes.viewAllButton}>

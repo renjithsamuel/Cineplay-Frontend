@@ -31,8 +31,8 @@ export const useMovieCenterSection = ({
   }
 
   const handleClueClick = (clue: number) => {
-    if((clue > game?.cluesUsed) && !game.completed) return;
-    if ( 
+    if (clue > game?.cluesUsed && !game.completed) return;
+    if (
       (game?.completed && game?.imageLinks?.length >= clue) ||
       clue <= game?.imageLinks?.length
     ) {

@@ -5,7 +5,7 @@ export type UserLogin = {
 
 export type UserRegister = {
   name: string;
-  email: string;  
-  type : string;
+  email: string;
+  type: string;
   password: string;
 };

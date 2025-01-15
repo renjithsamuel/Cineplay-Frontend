@@ -5,6 +5,7 @@ import { FiAlertCircle } from "react-icons/fi";
 import { FaPlay } from "react-icons/fa";
 import { Game } from "../../entity/Game/game";
 import { useMovieCenterSection } from "./MovieCenterSection.hooks";
+import dayjs from "dayjs";
 
 interface MovieCenterSectionProps {
   isGetGameLoading: boolean;
@@ -17,7 +18,7 @@ export const MovieCenterSection: FC<MovieCenterSectionProps> = ({
   currentClue,
   setCurrentClue,
 }) => {
-  const { images, handleClueClick } = useMovieCenterSection({
+  const { game, images, handleClueClick } = useMovieCenterSection({
     currentClue,
     setCurrentClue,
   });
@@ -30,41 +31,41 @@ export const MovieCenterSection: FC<MovieCenterSectionProps> = ({
       <Box className={classes.currentImage}>
         {/*  date and info */}
         <Box className={classes.dateAndInfo}>
-          <Box>{}</Box>
+          <Box> {dayjs(game.movieId).format("MMMM D")}</Box>
           <Box>
             <IconButton>
               <FiAlertCircle color="white" />
             </IconButton>
           </Box>
         </Box>
-        {!isGetGameLoading ? (
-          <img
-            src={images[currentClue - 1]}
-            width={900}
-            height={400}
-            alt={"img"}
-            className={classes.currImg}
-            style={{
-              opacity: 1,
-              transition: "opacity 0.5s ease-in",
-            }}
-          />
-        ) : (
-          <Box
-            width={900}
-            height={400}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              opacity: 1,
-              transition: "opacity 0.5s ease-in",
-            }}
-          >
-            <CircularProgress sx={{ color: "white" }} />
-          </Box>
-        )}
       </Box>
+      {!isGetGameLoading ? (
+        <img
+          src={images[currentClue - 1]}
+          width={900}
+          height={400}
+          alt={"img"}
+          className={classes.currImg}
+          style={{
+            opacity: 1,
+            transition: "opacity 0.5s ease-in",
+          }}
+        />
+      ) : (
+        <Box
+          width={900}
+          height={400}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            opacity: 1,
+            transition: "opacity 0.5s ease-in",
+          }}
+        >
+          <CircularProgress sx={{ color: "white" }} />
+        </Box>
+      )}
       {/* All images */}
       <Box className={classes.allImagesWrap}>
         {images.map((img, index) => {

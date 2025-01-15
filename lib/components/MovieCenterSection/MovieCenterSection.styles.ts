@@ -14,10 +14,13 @@ export const useMovieCenterSectionStyles = makeStyles((theme) => ({
   },
   dateAndInfo: {
     display: "flex",
+    flexDirection: "row",
+    width: "100%",
     justifyContent: "space-between",
     alignItems: "center",
   },
   currentImage: {
+    width: "95%",
     // justifySelf : 'center',
     alignSelf: "center",
   },
