@@ -3,7 +3,10 @@ import * as Yup from "yup";
 export const createRegisterValidation = (): Yup.AnySchema =>
   Yup.object().shape({
     username: Yup.string()
-      .matches(/^[a-zA-Z\s]+$/, "Username should only contain letters and spaces")
+      .matches(
+        /^[a-zA-Z\s]+$/,
+        "Username should only contain letters and spaces",
+      )
       .required("Userame is required"),
     // dateOfBirth: Yup.date()
     //   .required("Date of Birth is required")

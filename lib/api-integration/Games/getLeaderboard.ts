@@ -7,9 +7,9 @@
 // export type getLeaderboardResponse = AxiosResponse<Leaderboard | null>;
 // export type getLeaderboardAPIResponse = CommonResponse & { data: ILeaderboard };
 
-// export type getLeaderboardRequest = {     
+// export type getLeaderboardRequest = {
 //     movieId: string; // "2025-01-14" format
-//     type: string 
+//     type: string
 // }; // "FRAMES"
 
 // export const getLeaderboardAPI = async (request : getLeaderboardRequest): Promise<getLeaderboardResponse> => {

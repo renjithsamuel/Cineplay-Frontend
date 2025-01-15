@@ -43,11 +43,11 @@ export default function App({
             <QueryClientProvider client={queryClient}>
               <main className={poppins.className}>
                 <GameContextProvider>
-                <PageContextProvider>
-                  <UserContextProvider>
-                    <Component {...pageProps} />
-                  </UserContextProvider>
-                </PageContextProvider>
+                  <PageContextProvider>
+                    <UserContextProvider>
+                      <Component {...pageProps} />
+                    </UserContextProvider>
+                  </PageContextProvider>
                 </GameContextProvider>
               </main>
             </QueryClientProvider>

@@ -16,13 +16,7 @@ export const sideMenuItems = {
 
 export const PageSeparation = {
   PlayerPages: ["/", "/dialogues", "/music", "/profile"],
-  AdminPages: [
-    "/",
-    "/dialogues",
-    "/music",
-    "/dashboard",
-    "/profile",
-  ],
+  AdminPages: ["/", "/dialogues", "/music", "/dashboard", "/profile"],
 };
 
 export enum LeaderboardType {

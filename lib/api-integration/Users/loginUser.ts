@@ -9,10 +9,10 @@ import { User } from "../../entity/User/User";
 export type LoginUserRequest = { user: UserLogin };
 
 export type LoginUserResponse = CommonResponse & {
-  data: User &{
+  data: User & {
     token: string;
-  }
-}
+  };
+};
 
 export const loginUserAPI = async ({
   user,

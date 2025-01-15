@@ -156,24 +156,23 @@ export const useBaseLayout = ({
   useEffect(() => {
     if (user && isSuccess) {
       let tempMenuItems: SideNavItem[];
-        tempMenuItems = [
-          {
-            name: sideMenuItems.Movie.name,
-            icon: "./camera.svg",
-            link: sideMenuItems.Movie.link,
-          },
-          {
-            name: sideMenuItems.Dialogue.name,
-            icon: "./wave.svg",
-            link: sideMenuItems.Dialogue.link,
-          },
-          {
-            name: sideMenuItems.Music.name,
-            icon: "./music.svg",
-            link: sideMenuItems.Music.link,
-          },
-
-        ];
+      tempMenuItems = [
+        {
+          name: sideMenuItems.Movie.name,
+          icon: "./camera.svg",
+          link: sideMenuItems.Movie.link,
+        },
+        {
+          name: sideMenuItems.Dialogue.name,
+          icon: "./wave.svg",
+          link: sideMenuItems.Dialogue.link,
+        },
+        {
+          name: sideMenuItems.Music.name,
+          icon: "./music.svg",
+          link: sideMenuItems.Music.link,
+        },
+      ];
       setMenuItems(tempMenuItems);
     }
   }, [user]);

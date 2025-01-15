@@ -12,7 +12,7 @@ export type RegisterUserResponse = CommonResponse;
 export const registerUserAPI = async ({
   user,
 }: RegisterUserRequest): Promise<AxiosResponse<RegisterUserResponse>> => {
-  user.type = "CP_ACCOUNT"
+  user.type = "CP_ACCOUNT";
   return PublicAxios.post(`/auth/register`, user);
 };
 

@@ -6,7 +6,7 @@ import { themeValues } from "../../constants/ThemeConstants";
 import { Calendar } from "../CalenderBox/CalenderBox";
 import { Leaderboard } from "../Leaderboard/Leaderboard";
 import { useMovieRightSection } from "./MovieRightSection.hooks";
-import Confetti from "react-confetti"; 
+import Confetti from "react-confetti";
 
 interface MovieRightSectionProps {
   setCurrentClue: Dispatch<SetStateAction<number>>;
@@ -15,14 +15,18 @@ interface MovieRightSectionProps {
 export const MovieRightSection: FC<MovieRightSectionProps> = ({
   setCurrentClue,
 }) => {
-  const { confettiVisible, handleSubmit, game } = useMovieRightSection({ setCurrentClue: setCurrentClue });
+  const { confettiVisible, handleSubmit, game } = useMovieRightSection({
+    setCurrentClue: setCurrentClue,
+  });
 
   const classes = useMovieRightSectionStyles();
 
   return (
     <Box className={classes.movieRightSectionRoot}>
-             {confettiVisible && <Confetti style={{transition: "opacity 0.5s ease-in"}}/>}
-      
+      {confettiVisible && (
+        <Confetti style={{ transition: "opacity 0.5s ease-in" }} />
+      )}
+
       {/* streak , arena and profile */}
       <Box className={classes.streakArenaAndProfile}>
         {/* streak */}
@@ -78,10 +82,10 @@ export const MovieRightSection: FC<MovieRightSectionProps> = ({
           placeholder="Your Answer Here..."
           className={classes.answerInpBox}
           onKeyDown={(e) => {
-        if (e.key === "Enter" && !game.completed) {
-          handleSubmit(e.currentTarget.value);
-          e.currentTarget.value = "";
-        }
+            if (e.key === "Enter" && !game.completed) {
+              handleSubmit(e.currentTarget.value);
+              e.currentTarget.value = "";
+            }
           }}
           disabled={game?.completed}
         />

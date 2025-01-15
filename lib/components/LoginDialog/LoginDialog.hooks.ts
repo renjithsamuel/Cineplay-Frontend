@@ -75,8 +75,9 @@ export const useLoginDialog = ({}: loginDialogHookProps): loginDialogHook => {
   const handleSubmit = async (values: any) => {
     if (isLogin) {
       const response = await loginUser({ user: values });
-      console.log("response : ",response);
-      if (response.data.data.token) Cookie.access_token = response.data.data.token;
+      console.log("response : ", response);
+      if (response.data.data.token)
+        Cookie.access_token = response.data.data.token;
     } else {
       const registerResponse = await registerUser({ user: values });
       if (registerResponse.status === 409) {

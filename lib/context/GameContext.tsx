@@ -19,7 +19,7 @@ type TGameContext = {
 };
 
 export const GameContext = createContext<TGameContext>(
-  {} as unknown as TGameContext
+  {} as unknown as TGameContext,
 );
 
 interface GameContextProviderProps {

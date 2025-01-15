@@ -52,12 +52,10 @@ export const useMovies = ({}: MoviesParams): MoviesHook => {
     }
   }, [game, setSnackBarError]);
 
-
-
   useEffect(() => {
-      console.log("movies: settingGame", game);
-      console.log("movies: movieId", movieId);
-      setGame(game?.data || ({} as Game));
+    console.log("movies: settingGame", game);
+    console.log("movies: movieId", movieId);
+    setGame(game?.data || ({} as Game));
   }, [game]);
 
   return {
